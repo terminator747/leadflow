@@ -14,27 +14,50 @@ const { startWorkers } = require("./jobs/workers");
 const app = express();
 const server = http.createServer(app);
 
+const normalizeOrigin = (value) => {
+  if (!value) return null;
+  return value.trim().replace(/\/+$/, "");
+};
+
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
-  process.env.CLIENT_URL
+  normalizeOrigin(process.env.CLIENT_URL)
 ].filter(Boolean);
 
 const corsOptions = {
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow requests without an Origin header, such as health checks.
+    if (!origin) {
       return callback(null, true);
     }
 
+    const normalizedOrigin = normalizeOrigin(origin);
+
+    if (allowedOrigins.includes(normalizedOrigin)) {
+      return callback(null, true);
+    }
+
+    console.error("CORS blocked origin:", origin);
     return callback(new Error(`CORS blocked origin: ${origin}`));
   },
-  credentials: true
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 };
 
-const io = new Server(server, { cors: corsOptions });
+const io = new Server(server, {
+  cors: corsOptions
+});
+
 app.set("io", io);
 
+// CORS must run before the API routes.
 app.use(cors(corsOptions));
+
+// Explicitly respond to browser preflight requests.
+app.options(/.*/, cors(corsOptions));
+
 app.use(express.json());
 
 const uploadsDir = path.join(process.cwd(), "uploads");
@@ -82,7 +105,7 @@ async function startServer() {
     startWorkers(io);
 
     server.listen(PORT, "0.0.0.0", () => {
-      console.log(`LeadFlow API running on http://localhost:${PORT}`);
+      console.log(`LeadFlow API running on port ${PORT}`);
       console.log("Allowed frontend origins:", allowedOrigins);
     });
   } catch (error) {
