@@ -1,0 +1,33 @@
+<svg width="520" height="620" viewBox="0 0 520 620" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="coat" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dfffdc"/>
+      <stop offset="1" stop-color="#74c987"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b3225"/>
+      <stop offset="1" stop-color="#07110b"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <ellipse cx="270" cy="545" rx="170" ry="34" fill="#a9ffb7" opacity=".13" filter="url(#glow)"/>
+  <circle cx="265" cy="116" r="52" fill="#d69b74"/>
+  <path d="M214 109c4-52 95-66 109 5-21-18-55-21-109-5Z" fill="#1b241e"/>
+  <path d="M225 164c26 18 60 20 83-2l26 42-53 44-69-46 13-38Z" fill="#d69b74"/>
+  <path d="M177 220c30-30 70-29 101-9l45 58-32 40-16-42-13 100H196l-15-100-16 45-32-37 44-55Z" fill="url(#coat)"/>
+  <path d="M203 360h58l-8 129h-63l13-129Z" fill="#27332b"/>
+  <path d="M261 360h51l28 130h-63l-16-130Z" fill="#202a24"/>
+  <path d="M186 484l12 101h-37l-14-100 39-1Z" fill="#1a211d"/>
+  <path d="M293 484l33 101h-39l-24-100 30-1Z" fill="#1a211d"/>
+  <rect x="314" y="280" width="128" height="87" rx="8" transform="rotate(8 314 280)" fill="url(#screen)" stroke="#caffd2" stroke-opacity=".45" stroke-width="4"/>
+  <path d="M305 366h142l-22 18H285l20-18Z" fill="#8fd59b"/>
+  <rect x="333" y="300" width="80" height="7" rx="3" fill="#b8ffbe" opacity=".85"/>
+  <rect x="333" y="318" width="52" height="6" rx="3" fill="#b8ffbe" opacity=".35"/>
+  <rect x="333" y="338" width="23" height="12" rx="4" fill="#b8ffbe" opacity=".7"/>
+  <rect x="362" y="330" width="24" height="20" rx="4" fill="#75c98a" opacity=".7"/>
+  <rect x="392" y="321" width="20" height="29" rx="4" fill="#c9ffd0" opacity=".55"/>
+  <path d="M303 278c18 10 29 20 39 38" stroke="#d69b74" stroke-width="18" stroke-linecap="round"/>
+  <path d="M179 275c-22 24-34 48-43 78" stroke="#d69b74" stroke-width="17" stroke-linecap="round"/>
+  <circle cx="137" cy="357" r="9" fill="#d69b74"/>
+  <circle cx="344" cy="316" r="5" fill="#dfffe2" opacity=".8"/>
+</svg>
